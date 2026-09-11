@@ -39,7 +39,7 @@
     "jsdom": "^27.0.0",
     "prettier": "^3.9.6",
     "supertest": "^7.1.0",
-    "typescript": "~5.9.2",
+    "typescript": "~7.0.2",
     "vite": "^7.1.0",
     "vitest": "^4.1.11"
   }
