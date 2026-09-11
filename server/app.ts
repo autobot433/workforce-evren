@@ -8,13 +8,6 @@ import { ConflictError, NotFoundError, type Store } from './database';
 export function createApp(store: Store) {
   const app = express();
   app.disable('x-powered-by');
-  app.use((req, res, next) => {
-    if (!['127.0.0.1', 'localhost', '[::1]'].includes(req.hostname)) {
-      res.status(403).json({ error: 'This workspace only accepts localhost requests' });
-      return;
-    }
-    next();
-  });
   app.use((_req, res, next) => {
     res.set({
       'X-Content-Type-Options': 'nosniff',
@@ -33,7 +26,7 @@ export function createApp(store: Store) {
       if (
         req.get('sec-fetch-site') === 'cross-site' ||
         (origin &&
-          !['http://127.0.0.1:5173', 'http://localhost:5173', `http://${req.get('host')}`].includes(
+          !['http://127.0.0.1:5173', 'http://localhost:5173', `http://${req.get('host')}`, `https://${req.get('host')}`].includes(
             origin,
           ))
       ) {
