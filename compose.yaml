@@ -1,0 +1,10 @@
+services:
+  workforce:
+    build: .
+    ports:
+      - '127.0.0.1:3001:3001'
+    volumes:
+      - workforce-data:/app/data
+    restart: unless-stopped
+volumes:
+  workforce-data:
